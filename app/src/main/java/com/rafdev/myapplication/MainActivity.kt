@@ -1,5 +1,6 @@
 package com.rafdev.myapplication
 
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -38,6 +39,17 @@ class MainActivity : AppCompatActivity() {
                 AnimUtils.animateProgressBar(progressBtn)
             }
         }
+
+        btnCancel.setOnClickListener {
+            val circleView = findViewById<View>(R.id.circleView)
+
+            val animator = ObjectAnimator.ofFloat(circleView, "rotation", 0f, 360f)
+            animator.duration = 4000
+            animator.interpolator = LinearInterpolator()
+            animator.repeatCount = ObjectAnimator.INFINITE
+            animator.start()
+        }
+
 
     }
 
