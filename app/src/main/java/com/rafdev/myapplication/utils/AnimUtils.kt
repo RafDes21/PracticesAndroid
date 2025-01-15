@@ -9,6 +9,23 @@ import androidx.core.animation.doOnEnd
 
 object AnimUtils {
 
+    fun slideInFromLeft(container: View, screenWidth: Int, onEnd: () -> Unit = {}) {
+        val animator = ValueAnimator.ofFloat(-screenWidth.toFloat(), 0f).apply {
+            duration = 700
+            interpolator = DecelerateInterpolator()
+            addUpdateListener { valueAnimator ->
+                val value = valueAnimator.animatedValue as Float
+                container.translationX = value
+            }
+            doOnEnd {
+                container.translationX = 0f
+                onEnd()
+            }
+        }
+        container.visibility = View.VISIBLE
+        animator.start()
+    }
+
     fun slideInFromRight(container: View, screenWidth: Int, onEnd: () -> Unit = {}) {
         val animator = ValueAnimator.ofFloat(screenWidth.toFloat(), 0f).apply {
             duration = 700

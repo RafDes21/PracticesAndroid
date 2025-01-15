@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         btnPlay.setOnClickListener {
             val screenWidth = resources.displayMetrics.widthPixels
-            AnimUtils.slideInFromRight(container, screenWidth) {
+            AnimUtils.slideInFromLeft(container, screenWidth) {
                 AnimUtils.animateProgressBar(progressBtn)
             }
         }
